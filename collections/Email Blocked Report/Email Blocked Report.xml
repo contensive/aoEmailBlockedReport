@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Collection name="Email Blocked Report" guid="{EABE6966-1B7B-4869-B256-262CE14C32B1}" system="No" updatable="Yes" blockNavigatorNode="No">
+	<HelpLink></HelpLink>
+	<Help></Help>
+	<Addon name="Email Blocked Report" guid="{8D221338-2295-4335-AE82-343ED5A0DC64}" type="Report">
+		<Copy></Copy>
+		<CopyText></CopyText>
+		<ActiveXProgramID></ActiveXProgramID>
+		<DotNetClass></DotNetClass>
+		<ArgumentList></ArgumentList>
+		<AsAjax>No</AsAjax>
+		<Filter>No</Filter>
+		<Help></Help>
+		<HelpLink></HelpLink>
+		<Icon Link="" width="0" height="0" sprites="0" />
+		<InIframe>No</InIframe>
+		<BlockEditTools>No</BlockEditTools>
+		<FormXML></FormXML>
+		<IsInline>No</IsInline>
+		<JavascriptOnLoad></JavascriptOnLoad>
+		<JavascriptInHead></JavascriptInHead>
+		<JavascriptBodyEnd></JavascriptBodyEnd>
+		<MetaDescription></MetaDescription>
+		<OtherHeadTags></OtherHeadTags>
+		<Content>No</Content>
+		<Template>No</Template>
+		<Email>No</Email>
+		<Admin>No</Admin>
+		<OnPageEndEvent>No</OnPageEndEvent>
+		<OnPageStartEvent>No</OnPageStartEvent>
+		<OnBodyStart>No</OnBodyStart>
+		<OnBodyEnd>No</OnBodyEnd>
+		<RemoteMethod>No</RemoteMethod>
+		<ProcessRunOnce>No</ProcessRunOnce>
+		<ProcessInterval>0</ProcessInterval>
+		<PageTitle></PageTitle>
+		<RemoteAssetLink></RemoteAssetLink>
+		<Styles><![CDATA[#emailBlockList { width: 500px; padding: 20px; margin: 50px auto; background-color: white;}
+#emailBlockList td { padding: 5px; border-bottom: 1px solid #ddd; }
+]]></Styles>
+		<Scripting Language="" EntryPoint="" Timeout="5000">
+			<Code><![CDATA[function f
+dim fileName,content
+filename = cp.site.physicalinstallPath & "\config\SMTPBlockList_" & cp.site.name & ".txt"
+content = cp.file.read( filename )
+content = replace( content, vbcrlf, vbcr )
+content = replace( content, vblf, vbcr )
+content = replace( content, vbcr & vbcr, vbcr )
+content = replace( content, vbcr, "</td></tr><tr><td>" )
+content = replace( content, vbtab, "</td><td>" )
+f = "<table style=""width:100%""><tr><td><b>Email</b></td><td><b>Date Blocked</b></td></tr><tr><td>" & content  & "</td></tr></table>"
+f = "<div id=""emailBlockList""><h2>Email Blocked List</h2><p>A list of email addresses from users who clicked 'do not send to my address' in any email from this site.</p>" & f & "</div>"
+f = replace( f, "<tr><td></td></tr>", "" )
+end function]]></Code>
+		</Scripting>
+	</Addon>
+</Collection>
