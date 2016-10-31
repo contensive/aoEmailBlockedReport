@@ -49,7 +49,7 @@ content = replace( content, vbcr & vbcr, vbcr )
 content = replace( content, vbcr, "</td></tr><tr><td>" )
 content = replace( content, vbtab, "</td><td>" )
 f = "<table style=""width:100%""><tr><td><b>Email</b></td><td><b>Date Blocked</b></td></tr><tr><td>" & content  & "</td></tr></table>"
-f = "<div id=""emailBlockList""><h2>Email Blocked List</h2><p>A list of email addresses from users who clicked 'do not send to my address' in any email from this site.</p>" & f & "</div>"
+f = "<div id=""emailBlockList""><h2>Email Blocked Report</h2><p>A list of email addresses blocked either from a user clicking on 'do not send to my address' in any email from this site, or from a permanent failure delivering the email.</p>" & f & "</div>"
 f = replace( f, "<tr><td></td></tr>", "" )
 end function]]></Code>
 		</Scripting>
